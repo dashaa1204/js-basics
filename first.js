@@ -79,29 +79,55 @@
 //   console.log("Sunday");
 // } else console.log("Error 404");
 
-let days = 333;
-if (days < 32) {
-  console.log("January");
-} else if (days < 60) {
-  console.log("February");
-} else if (days < 91) {
-  console.log("March");
-} else if (days < 121) {
-  console.log("April");
-} else if (days < 151) {
-  console.log("May");
-} else if (days < 182) {
-  console.log("June");
-} else if (days < 213) {
-  console.log("July");
-} else if (days < 242) {
-  console.log("August");
-} else if (days < 274) {
-  console.log("September");
-} else if (days < 305) {
-  console.log("Octeber");
-} else if (days < 336) {
-  console.log("November");
-} else if (days < 366) {
-  console.log("December");
+// let days = 333;
+// if (days < 32) {
+//   console.log("January");
+// } else if (days < 60) {
+//   console.log("February");
+// } else if (days < 91) {
+//   console.log("March");
+// } else if (days < 121) {
+//   console.log("April");
+// } else if (days < 152) {
+//   console.log("May");
+// } else if (days < 182) {
+//   console.log("June");
+// } else if (days < 213) {
+//   console.log("July");
+// } else if (days < 243) {
+//   console.log("August");
+// } else if (days < 274) {
+//   console.log("September");
+// } else if (days < 305) {
+//   console.log("Octeber");
+// } else if (days < 335) {
+//   console.log("November");
+// } else if (days < 366) {
+//   console.log("December");
+// } else console.log("Error");
+
+// let midterm1 = 100;
+// let midterm2 = 100;
+// let final = 100;
+// if ((midterm1 + midterm2 + final) / 3 < 60) {
+//   console.log("F");
+// } else if ((midterm1 + midterm2 + final) / 3 < 70) {
+//   console.log("D");
+// } else if ((midterm1 + midterm2 + final) / 3 < 80) {
+//   console.log("C");
+// } else if ((midterm1 + midterm2 + final) / 3 < 101) {
+//   console.log("A");
+// } else console.log("Error");
+
+let midterm1 = 100;
+let midterm2 = 70;
+let final = 50;
+if (((midterm1 + midterm2) / 2 + final) / 2 < 60) {
+  console.log("F");
+} else if (((midterm1 + midterm2) / 2 + final) / 2 < 70) {
+  console.log("D");
+} else if (((midterm1 + midterm2) / 2 + final) / 2 < 80) {
+  console.log("C");
+} else if (((midterm1 + midterm2) / 2 + final) / 2 < 101) {
+  console.log("A");
 } else console.log("Error");
