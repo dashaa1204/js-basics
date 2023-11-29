@@ -140,36 +140,36 @@
 
 // let result = doSomething(15);
 
-function findDay(num) {
-  if (num <= 31) return "January";
-  else if (num <= 31 + 28) return "February";
-  else if (num <= 31 + 28 + 31) return "March";
-  else if (num <= 31 + 28 + 31 + 30) return "April";
-  else if (num <= 31 + 28 + 31 + 30 + 31) return "May";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30) return "June";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31) return "July";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30) return "August";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31)
-    return "September";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30)
-    return "Octeber";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30 + 31)
-    return "November";
-  else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30)
-    return "December";
-}
+// function findDay(num) {
+//   if (num <= 31) return "January";
+//   else if (num <= 31 + 28) return "February";
+//   else if (num <= 31 + 28 + 31) return "March";
+//   else if (num <= 31 + 28 + 31 + 30) return "April";
+//   else if (num <= 31 + 28 + 31 + 30 + 31) return "May";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30) return "June";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31) return "July";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30) return "August";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31)
+//     return "September";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30)
+//     return "Octeber";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30 + 31)
+//     return "November";
+//   else if (num <= 31 + 28 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30 + 31 + 30)
+//     return "December";
+// }
 
-let Month = findDay(360);
-console.log(Month);
+// let Month = findDay(360);
+// console.log(Month);
 
-function avgGrade(mid1, mid2, final) {
-  if ((mid1 + mid2 + final) / 3 < 60) return "F";
-  else if ((mid1 + mid2 + final) / 3 < 70) return "D";
-  else if ((mid1 + mid2 + final) / 3 < 80) return "C";
-  else if ((mid1 + mid2 + final) / 3 < 90) return "B";
-  else if ((mid1 + mid2 + final) / 3 < 101) return "A";
-  else return "Error";
-}
+// function avgGrade(mid1, mid2, final) {
+//   if ((mid1 + mid2 + final) / 3 < 60) return "F";
+//   else if ((mid1 + mid2 + final) / 3 < 70) return "D";
+//   else if ((mid1 + mid2 + final) / 3 < 80) return "C";
+//   else if ((mid1 + mid2 + final) / 3 < 90) return "B";
+//   else if ((mid1 + mid2 + final) / 3 < 101) return "A";
+//   else return "Error";
+// }
 
-let finalGrade = avgGrade(100, 80, 50);
-console.log(finalGrade);
+// let finalGrade = avgGrade(100, 80, 50);
+// console.log(finalGrade);
