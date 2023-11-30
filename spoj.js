@@ -62,10 +62,10 @@
 // }
 // RGB7011(200);
 
-// function login(user, pass) {
-//     if(user=="dashaa" && pass=="123123") return "true"
-//     else return "false"
-// }
+function login(user, pass) {
+  if (user == "dashaa" && pass == "123123") return "true";
+  else return "false";
+}
 
 // let answer = login("dashaa", "123123")
 // console.log(answer)
