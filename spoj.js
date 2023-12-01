@@ -62,10 +62,10 @@
 // }
 // RGB7011(200);
 
-function login(user, pass) {
-  if (user == "dashaa" && pass == "123123") return "true";
-  else return "false";
-}
+// function login(user, pass) {
+//   if (user == "dashaa" && pass == "123123") return "true";
+//   else return "false";
+// }
 
 // let answer = login("dashaa", "123123")
 // console.log(answer)
@@ -124,10 +124,13 @@ function login(user, pass) {
 // console.log(answer);
 
 // function RGB7104(num1, num2, num3, num4) {
-//   if (num1 < num2 && num1 < num3 && num1 < num4) return num1;
-//   if (num2 < num1 && num2 < num3 && num2 < num4) return num2;
-//   if (num3 < num2 && num3 < num1 && num3 < num4) return num3;
-//   if (num4 < num2 && num4 < num3 && num4 < num1) return num4;
+//   if (num1 < num2 && num1 < num3 && num1 < num4) {
+//     return num1;
+//   } else if (num2 < num3 && num2 < num4) {
+//     return num2;
+//   } else if (num3 < num4) {
+//     return num3;
+//   } else return num4;
 // }
 
 // let answer = RGB7104(3, 2, 1, 4);
@@ -214,3 +217,19 @@ function login(user, pass) {
 
 // let Answer = RGB7113(11);
 // console.log("Answer:", Answer);
+
+// function RGB7114(num1, num2, num3) {
+//   if (num1 % 2 == 0) {
+//     console.log("Yes");
+//   } else console.log("No");
+//   if (num2 % 2 == 0) {
+//     console.log("Yes");
+//   } else console.log("No");
+//   if (num3 % 2 == 0) {
+//     console.log("Yes");
+//   } else console.log("No");
+// }
+
+// RGB7114(3, 4, 5);
+
+
