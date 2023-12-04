@@ -60,6 +60,7 @@
 //   let min = (num - second) / 60;
 //   console.log(min, second);
 // }
+
 // RGB7011(200);
 
 // function login(user, pass) {
@@ -232,4 +233,69 @@
 
 // RGB7114(3, 4, 5);
 
+// function RGB7203(num) {
+//   for (let text = 1; text < num; text = text + 1) {
+//     console.log("IOI");
+//   }
+// }
 
+// let answer = RGB7203(4);
+
+// for (let text = 0; text < 7; text = text + 1) {
+//   console.log("hello world");
+// }
+
+// function RGB7204(num) {
+//   for (; num < 15; num = 1 + num) {}
+//   return num;
+// }
+
+// let answer = RGB7204(5);
+// console.log("Answer:", answer);
+
+let products = [
+  {
+    name: "iron",
+    price: 300000,
+    category: "electronics",
+    brand: "lg",
+    stock: 20,
+  },
+  {
+    name: "tv",
+    price: 900000,
+    category: "electronics",
+    brand: "samsung",
+    stock: 20,
+  },
+  {
+    name: "vacuum",
+    price: 200000,
+    category: "electronics",
+    brand: "samsung",
+    stock: 20,
+  },
+  {
+    name: "washing machine",
+    price: 700000,
+    category: "electronics",
+    brand: "samsung",
+    stock: 20,
+  },
+  {
+    name: "dish washer",
+    price: 600000,
+    category: "electronics",
+    brand: "samsung",
+    stock: 20,
+  },
+];
+
+function set(disc) {
+  for (let i = 0; i < 5; i = i + 1) {
+    products[i] = products[i].price - products[i].price * disc;
+    console.log(products.name, products[i]);
+  }
+}
+
+let answer = set(0.1);
