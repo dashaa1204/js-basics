@@ -398,7 +398,38 @@ let news = [
 ];
 
 function filterDate(LastOrFirst, num) {
-  let first = [];
-  let last = [];
-  for(let i=0,i<)
+  let firstdays = [];
+  let lastdays = [];
+
+  for (let i = 0; i <= num; i = i + 1) {
+    firstdays = firstdays + news[i].publishedDate;
+  }
+  let i = num;
+  for (; i <= 10; i = i + 1) {
+    lastdays = lastdays + news[i].publishedDate;
+  }
+  if (LastOrFirst == "firstt") {
+    return firstdays;
+  } else if (LastOrFirst == "lastt") {
+    return lastdays;
+  }
 }
+
+let answer = filterDate("first", 5);
+console.log(answer);
+
+// function filterDate(LastOrFirst, num) {
+//   let firstdays = [];
+//   let lastdays = [];
+//   let i = num;
+
+//   for (; i <= 10; i = i + 1) {
+//     firstdays = firstdays + news[i].publishedDate;
+//   }
+//   if (LastOrFirst == "firstt") {
+//     return firstdays;
+//   }
+// }
+
+// let answer = filterDate("firstt", 5);
+// console.log(answer);
