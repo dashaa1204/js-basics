@@ -253,49 +253,152 @@
 // let answer = RGB7204(5);
 // console.log("Answer:", answer);
 
-let products = [
+// let products = [
+//   {
+//     name: "iron",
+//     price: 300000,
+//     category: "electronics",
+//     brand: "lg",
+//     stock: 20,
+//   },
+//   {
+//     name: "tv",
+//     price: 900000,
+//     category: "electronics",
+//     brand: "samsung",
+//     stock: 20,
+//   },
+//   {
+//     name: "vacuum",
+//     price: 200000,
+//     category: "electronics",
+//     brand: "samsung",
+//     stock: 20,
+//   },
+//   {
+//     name: "washing machine",
+//     price: 700000,
+//     category: "electronics",
+//     brand: "samsung",
+//     stock: 20,
+//   },
+//   {
+//     name: "dish washer",
+//     price: 600000,
+//     category: "electronics",
+//     brand: "samsung",
+//     stock: 20,
+//   },
+// ];
+
+// function set(disc) {
+//   for (let i = 0; i < 5; i = i + 1) {
+//     products[i] = products[i].price - products[i].price * disc;
+//     console.log(products.name, products[i]);
+//   }
+// }
+
+// let answer = set(0.1);
+
+let news = [
   {
-    name: "iron",
-    price: 300000,
-    category: "electronics",
-    brand: "lg",
-    stock: 20,
+    title: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    description: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    publishedDate: "12/6/2023",
+    author: "Dorj",
+    catergory: "uls tur",
   },
+
   {
-    name: "tv",
-    price: 900000,
-    category: "electronics",
-    brand: "samsung",
-    stock: 20,
+    title: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    description: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    publishedDate: "12/7/2023",
+    author: "Dorj",
+    catergory: "uls tur",
   },
+
   {
-    name: "vacuum",
-    price: 200000,
-    category: "electronics",
-    brand: "samsung",
-    stock: 20,
+    title: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    description: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    publishedDate: "12/8/2023",
+    author: "Dorj",
+    catergory: "uls tur",
   },
+
   {
-    name: "washing machine",
-    price: 700000,
-    category: "electronics",
-    brand: "samsung",
-    stock: 20,
+    title: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    description: "ХӨРӨНГӨ ОРУУЛАЛТЫН ТААТАЙ ОРЧИНТОЙ УЛС БОЛГОХЫГ ЗОРЬЖ",
+    publishedDate: "12/9/2023",
+    author: "Chimeg",
+    catergory: "uls tur",
   },
+
   {
-    name: "dish washer",
-    price: 600000,
-    category: "electronics",
-    brand: "samsung",
-    stock: 20,
+    title: "ӨВӨРХАНГАЙН ХҮЧТЭНҮҮД ХӨВСГӨЛИЙГ ИЛТ ИЛҮҮРХЛЭЭ",
+    description:
+      "Монголын үндэсний бөхийн холбооны “Pepsi-Алтан цом”-ын төлөөх хагас шигшээ барилдаанууд үргэлжилж байна. Тав дахь өдрийн “D” хэсгийн хоёр дахь барилдаан Хөвсгөл-Өвөрхангай аймгуудын дунд өрнөж, Өвөрхангай аймгийн баг 19:6-аар",
+    publishedDate: "12/10/2023",
+    author: "Chimeg",
+    catergory: "sport",
+  },
+
+  {
+    title: "ӨВӨРХАНГАЙН ХҮЧТЭНҮҮД ХӨВСГӨЛИЙГ ИЛТ ИЛҮҮРХЛЭЭ",
+    description:
+      "Монголын үндэсний бөхийн холбооны “Pepsi-Алтан цом”-ын төлөөх хагас шигшээ барилдаанууд үргэлжилж байна. Тав дахь өдрийн “D” хэсгийн хоёр дахь барилдаан Хөвсгөл-Өвөрхангай аймгуудын дунд өрнөж, Өвөрхангай аймгийн баг 19:6-аар",
+    publishedDate: "12/11/2023",
+    author: "Chimeg",
+    catergory: "sport",
+  },
+
+  {
+    title: "ӨВӨРХАНГАЙН ХҮЧТЭНҮҮД ХӨВСГӨЛИЙГ ИЛТ ИЛҮҮРХЛЭЭ",
+    description:
+      "Монголын үндэсний бөхийн холбооны “Pepsi-Алтан цом”-ын төлөөх хагас шигшээ барилдаанууд үргэлжилж байна. Тав дахь өдрийн “D” хэсгийн хоёр дахь барилдаан Хөвсгөл-Өвөрхангай аймгуудын дунд өрнөж, Өвөрхангай аймгийн баг 19:6-аар",
+    publishedDate: "12/12/2023",
+    author: "Bold",
+    catergory: "sport",
+  },
+
+  {
+    title: "ХАРРИ ПОТТЕРЫН АНХНЫ ХЭВЛЭЛИЙГ 76 МЯНГАН ДОЛЛАРААР ЗАРНА",
+    description:
+      "ХХарри Поттерын анхны хэвлэлийг “Highland« номын дэлгүүр 76 мянган ам.доллараар дуудлагаар худалдах",
+    publishedDate: "12/13/2023",
+    author: "Bold",
+    catergory: "entertaiment",
+  },
+
+  {
+    title: "ХАРРИ ПОТТЕРЫН АНХНЫ ХЭВЛЭЛИЙГ 76 МЯНГАН ДОЛЛАРААР ЗАРНА",
+    description:
+      "Харри Поттерын анхны хэвлэлийг “Highland« номын дэлгүүр 76 мянган ам.доллараар дуудлагаар худалдах",
+    publishedDate: "12/14/2023",
+    author: "Bold",
+    catergory: "entertaiment",
+  },
+
+  {
+    title: "ХАРРИ ПОТТЕРЫН АНХНЫ ХЭВЛЭЛИЙГ 76 МЯНГАН ДОЛЛАРААР ЗАРНА",
+    description:
+      "Харри Поттерын анхны хэвлэлийг “Highland« номын дэлгүүр 76 мянган ам.доллараар дуудлагаар худалдах",
+    publishedDate: "12/15/2023",
+    author: "Bold",
+    catergory: "entertaiment",
+  },
+
+  {
+    title: "ХАРРИ ПОТТЕРЫН АНХНЫ ХЭВЛЭЛИЙГ 76 МЯНГАН ДОЛЛАРААР ЗАРНА",
+    description:
+      "Харри Поттерын анхны хэвлэлийг “Highland« номын дэлгүүр 76 мянган ам.доллараар дуудлагаар худалдах",
+    publishedDate: "12/15/2023",
+    author: "Bold",
+    catergory: "entertaiment",
   },
 ];
 
-function set(disc) {
-  for (let i = 0; i < 5; i = i + 1) {
-    products[i] = products[i].price - products[i].price * disc;
-    console.log(products.name, products[i]);
-  }
+function filterDate(LastOrFirst, num) {
+  let first = [];
+  let last = [];
+  for(let i=0,i<)
 }
-
-let answer = set(0.1);
