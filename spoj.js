@@ -246,8 +246,11 @@
 // }
 
 // function RGB7204(num) {
-//   for (; num < 15; num = 1 + num) {}
-//   return num;
+//   console.log("ddddd", num);
+//   for (let i = 0; i < num; i = i++) {
+//     num = num + i;
+//   }
+//   console.log(num);
 // }
 
 // let answer = RGB7204(5);
@@ -294,11 +297,11 @@
 // function set(disc) {
 //   for (let i = 0; i < 5; i = i + 1) {
 //     products[i] = products[i].price - products[i].price * disc;
-//     console.log(products.name, products[i]);
-//   }
-// }
+// //     console.log(products.name, products[i]);
+// //   }
+// // }
 
-// let answer = set(0.1);
+// // let answer = set(0.1);
 
 let news = [
   {
@@ -395,41 +398,19 @@ let news = [
     author: "Bold",
     catergory: "entertaiment",
   },
-];
+]
 
-function filterDate(LastOrFirst, num) {
-  let firstdays = [];
-  let lastdays = [];
-
-  for (let i = 0; i <= num; i = i + 1) {
-    firstdays = firstdays + news[i].publishedDate;
-  }
-  let i = num;
-  for (; i <= 10; i = i + 1) {
-    lastdays = lastdays + news[i].publishedDate;
-  }
-  if (LastOrFirst == "firstt") {
-    return firstdays;
-  } else if (LastOrFirst == "lastt") {
-    return lastdays;
-  }
+function findPubDay(text, num){
+  for(let i=0)
 }
 
-let answer = filterDate("first", 5);
-console.log(answer);
-
-// function filterDate(LastOrFirst, num) {
-//   let firstdays = [];
-//   let lastdays = [];
-//   let i = num;
-
-//   for (; i <= 10; i = i + 1) {
-//     firstdays = firstdays + news[i].publishedDate;
+// function RGB7205(num) {
+//   let sum;
+//   for (let i = 1; i < num; i++) {
+//     num = num * i;
 //   }
-//   if (LastOrFirst == "firstt") {
-//     return firstdays;
-//   }
+//   return (sum = sum + num);
 // }
 
-// let answer = filterDate("firstt", 5);
+// let answer = RGB7205(5);
 // console.log(answer);
