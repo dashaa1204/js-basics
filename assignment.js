@@ -15,9 +15,13 @@ function ass2(num1, num2) {
 ass2(16, 9);
 
 function ass3(num1, num2, num3) {
+  let container = [];
+  let count = -1;
   for (let i = num1; i <= num2; i = i + num3) {
-    console.log(i);
+    count++;
+    container[count] = i;
   }
+  console.log(container);
 }
 
 ass3(10, 20, 2);
