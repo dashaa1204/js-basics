@@ -401,7 +401,7 @@ let news = [
 ]
 
 function findPubDay(text, num){
-  for(let i=0)
+  for(let i=0; i<num; )
 }
 
 // function RGB7205(num) {
