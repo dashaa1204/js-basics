@@ -146,21 +146,29 @@
 // let answer = RGB7019(2, 3, 4);
 // console.log(answer);
 
-// function RGB7170(mFloor, doorPerF, dnum) {
-//   let floor = dnum / doorPerF;
-//   let doornum = dnum % doorPerF;
-//   if (mFloor * doorPerF >= dnum) {
-//     if (floor % 1 > 0) {
-//       floor = floor - (dnum % doorPerF) / doorPerF + 1;
-//     }
-//     if (doornum == 0) {
-//       doornum = doorPerF;
-//     }
-//   }
+function RGB7170(mFloor, doorPerF, dnum) {
+  let floor = dnum / doorPerF;
+  let doornum = dnum % doorPerF;
+  if (mFloor * doorPerF < dnum) {
+    console.log("Error");
+  } else if (mFloor * doorPerF >= dnum) {
+    if (floor % 1 > 0) {
+      floor = floor - (dnum % doorPerF) / doorPerF + 1;
+    }
+    if (doornum == 0) {
+      doornum = doorPerF;
+    }
+    console.log("Floor:", floor, "Door-number:", doornum);
+  }
+}
 
-//   console.log(floor, doornum);
-// }
+RGB7170(5, 4, 16);
 
-// RGB7170(5, 4, 1);
-
-
+function RGB7171(ent, mFloor, doorPerF, dnum) {
+  let floor = dnum / doorPerF;
+  let doornum = dnum % doorPerF;
+  let entrance;
+  if (mFloor * doorPerF >= dnum) {
+    floor = floor - (dnum % doorPerF) / doorPerF + 1;
+  }
+}
