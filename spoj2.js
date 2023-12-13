@@ -162,7 +162,7 @@ function RGB7170(mFloor, doorPerF, dnum) {
   }
 }
 
-RGB7170(5, 4, 16);
+RGB7170(5, 4, 20);
 
 function RGB7171(ent, mFloor, doorPerF, dnum) {
   let floor = dnum / doorPerF;

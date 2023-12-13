@@ -71,27 +71,40 @@ let products = [
   },
 ];
 
-// let brands = "Philips";
-// let findByBrand = products.filter((a) => {
-//   return a.brand == brands;
-// });
 
-// console.log("filtered by brand:", findByBrand);
 
-// let maxPrice = 10000000;
-// let minPrice = 100;
-// let findByPrice = products.filter((a) => {
-//   return a.price <= maxPrice || a.price < minPrice;
-// });
+let brands = "Apple";
+let findByBrand = products.filter((a) => {
+  return a.brand == brands;
+});
 
-// console.log("filtered by price:", findByPrice);
+console.log("filtered by brand:", findByBrand);
+
+let maxPrice = 10000000;
+let minPrice = 100;
+let findByPrice = products.filter((a) => {
+  return a.price <= maxPrice || a.price < minPrice;
+});
+
+console.log("filtered by price:", findByPrice);
 
 let sortByStock = products.sort((a, b) => {
-  if (a.stock > b.stock) {
+  if (a.stock < b.stock) {
     return -1;
   } else {
     return 1;
   }
 });
 
-console.log("sorted by stock", sortByStock);
+// console.log("sorted by stock", sortByStock);
+
+let prices = products.map((a) => {
+  return a.price;
+});
+console.log(prices);
+
+prices.sort((a, b) => a - b);
+
+console.log(prices);
+
+
