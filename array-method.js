@@ -84,14 +84,22 @@ console.log("filtered by brand:", findByBrand);
 //   return a.price <= maxPrice || a.price < minPrice;
 // });
 
-// console.log("filtered by price:", findByPrice);
+// console.log("filtered by brand:", findByBrand);
 
-let sortByStock = products.sort((a, b) => {
-  if (a.stock > b.stock) {
-    return -1;
-  } else {
-    return 1;
-  }
+let maxPrice = 1200000;
+let minPrice = 250000;
+let findByPrice = products.filter((a) => {
+  return a.price <= maxPrice && a.price >= minPrice;
 });
 
-console.log("sorted by stock", sortByStock);
+console.log("filtered by price:", findByPrice);
+
+// let sortByStock = products.sort((a, b) => {
+//   if (a.stock > b.stock) {
+//     return -1;
+//   } else {
+//     return 1;
+//   }
+// });
+
+// console.log("sorted by stock", sortByStock);
