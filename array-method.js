@@ -78,14 +78,6 @@ let findByBrand = products.filter((a) => {
 
 console.log("filtered by brand:", findByBrand);
 
-// let maxPrice = 10000000;
-// let minPrice = 100;
-// let findByPrice = products.filter((a) => {
-//   return a.price <= maxPrice || a.price < minPrice;
-// });
-
-// console.log("filtered by brand:", findByBrand);
-
 let maxPrice = 1200000;
 let minPrice = 250000;
 let findByPrice = products.filter((a) => {
