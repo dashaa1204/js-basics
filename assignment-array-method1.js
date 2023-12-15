@@ -141,8 +141,8 @@ const bookData = [
   },
 ];
 
-let myArraylenght = bookData.length;
-console.log(myArraylenght);
+// let myArraylenght = bookData.length;
+// console.log(myArraylenght);
 // find Expensive book more than 12
 // find 12-18 priced range books
 // sort books by rating
@@ -169,11 +169,13 @@ console.log(myArraylenght);
 // console.log(sortByRate);
 
 // const findMoreLenght = bookData.filter((a) => {
-//   return (bookData.length = 5);
+//   return a.title.length > 20;
 // });
 
 // console.log(findMoreLenght);
 
-let summary = { summary: "`A captivating book by ${​book.author}​.`" };
-bookData.push(summary);
-console.log(bookData);
+// let summary = `A captivating book by {​book.author}​.`;
+// let addSummary = bookData.map((a) => {
+//   a.summary = summary;
+// });
+// console.log(bookData);
