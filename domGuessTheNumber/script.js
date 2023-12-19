@@ -14,5 +14,6 @@ function check() {
 
 function reset() {
   Number((document.getElementById("num1").value = ""));
-  let theNumber = Math.floor(Math.random() * 100 + 1);
+  Math.floor(Math.random() * 100 + 1);
+  console.log(reset);
 }
