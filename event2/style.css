@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  width: 900px;
+  width: 904px;
   height: 900px;
   display: flex;
   flex-wrap: wrap;
@@ -19,7 +19,7 @@ body {
 }
 
 .box {
-  width: 299px;
+  width: 300px;
   height: 299px;
   border: 1px solid grey;
 }
