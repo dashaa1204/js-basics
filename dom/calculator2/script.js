@@ -1,5 +1,5 @@
 let characters = [
-  "c",
+  "C",
   "+/-",
   "%",
   "/",
@@ -36,29 +36,50 @@ root.appendChild(container);
 container.appendChild(outDisp);
 outDisp.appendChild(display);
 container.appendChild(numPad);
-display.appendChild(prevData);
-display.appendChild(secData);
 let num;
 let collector = "";
 
-const currentOperandElement = document.querySelector("[secData]");
-const prevOperandElement = document.querySelector("[prevData]");
-
 for (let i = 0; i < characters.length; i++) {
   num = createTag("div", "num");
+  num.setAttribute("id", `${i}`);
   numPad.appendChild(num);
   num.innerText = characters[i];
-  num.addEventListener("click", console.log);
-}
-
-function displayCol() {
-  let bill = Number(document.getele);
+  num.addEventListener("click", addnum);
+  function addnum() {
+    document.querySelector(".display").innerText += characters[i];
+  }
 }
 
 let nums = document.getElementsByClassName("num");
 
 nums[16].setAttribute("class", "num0");
-nums[10].setAttribute("class", "numbers");
+
+let clearButton = document.getElementById("0");
+clearButton.addEventListener("click", clear);
+
+console.log(clearButton);
+
+let = answer;
+
+function clear() {
+  display.innerText = "";
+}
+
+function sub(a, b) {
+  answer = a - b;
+}
+
+function apend(a, b) {
+  answer = a + b;
+}
+
+function mult(a, b) {
+  answer = a * b;
+}
+
+function divide(a, b) {
+  answer = a / b;
+}
 
 // console.log(collector);
 
