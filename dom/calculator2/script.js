@@ -57,16 +57,20 @@ nums[16].setAttribute("class", "num0");
 let clearButton = document.getElementById("0");
 clearButton.addEventListener("click", clear);
 
+let subButton = document.getElementById("11");
+subButton.addEventListener("click", sub);
+
 console.log(clearButton);
 
-let = answer;
+let answer;
+let memory = 0;
 
 function clear() {
   display.innerText = "";
 }
 
-function sub(a, b) {
-  answer = a - b;
+function sub(a, b, operation) {
+  if()
 }
 
 function apend(a, b) {
