@@ -51,6 +51,7 @@ function addlist() {
 
     function editList() {
       input2.disabled = false;
+      input2.style.border = "1px solid black";
       const button4 = createTag("button", "save");
       smallContList.appendChild(button4);
       button4.innerText = "Save";
