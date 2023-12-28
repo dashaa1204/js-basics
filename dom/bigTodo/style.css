@@ -25,6 +25,15 @@ body {
 }
 
 .card {
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  gap: 12px;
+}
+
+.allcard {
   background-color: #ebecf0;
   border-radius: 8px;
   padding: 8px;
@@ -136,4 +145,49 @@ button {
 
 .error + .helperText {
   display: block !important;
+}
+
+.list {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  cursor: grab;
+  display: flex;
+  gap: 12px;
+}
+
+.done {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.done i {
+  font-size: 12px;
+}
+
+.addedPriority {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

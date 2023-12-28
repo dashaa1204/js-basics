@@ -20,10 +20,10 @@ let addBtnPls;
 const listTitles = ["To-do", "In progress", "Stuck", "Done"];
 
 for (let i = 0; i < 4; i++) {
-  card = createTag("div", "card");
+  card = createTag("div", "allcard");
   header = createTag("div", "boardHeader");
   list = createTag("div", "list");
-  list.setAttribute("id", `${i}`);
+  list.setAttribute("id", `${listTitles[i]}`);
   addBtn = createTag("div", "addBtn");
   over = createTag("div", "over");
   titleCount = createTag("span", "count");
@@ -66,7 +66,7 @@ statusInput.setAttribute("id", "status");
 let priorityLabel = createTag("label", "priorityLabel");
 let priorityInput = createTag("select");
 priorityInput.setAttribute("id", "priority");
-let submitBtn = document.createElement("button", "submitBtn");
+let submitBtn = createTag("button", "submitBtn");
 submitBtn.setAttribute("type", "submit");
 let statusOption1 = document.createElement("option");
 let statusOption2 = document.createElement("option");
@@ -136,24 +136,75 @@ let awayForm = document.getElementById("away");
 awayForm.addEventListener("click", invisAdd);
 
 function alert() {
-  if (titleInput.innerText == "") {
+  if (titleInput.value === "") {
     helperText.style.display = "block";
+    titleInput.style.border = "solid 1px red";
   } else {
     helperText.style.display = "none";
+    titleInput.style.border = "solid 1px grey";
+    console.log("none");
+  }
+  if (descInput.value === "") {
+    descHelpText.style.display = "block";
+    descInput.style.border = "solid 1px red";
+  } else {
+    descHelpText.style.display = "none";
+    descInput.style.border = "solid 1px grey";
   }
 }
 
 function addCard() {
   const card = createTag("div", "card");
   const done = createTag("div", "done");
+  const symbolDone = createTag("i");
+  symbolDone.setAttribute("class", "fa-solid fa-check");
   const details = createTag("div", "details");
   const actions = createTag("div", "actions");
+  const detailTitle = createTag("h4", "detailTitle");
+  const detailText = createTag("p", "detailText");
+  const priority = createTag("div", "addedPriority");
+  const exit = createTag("div", "done");
+  const edit = createTag("div", "done");
+
+  list.appendChild(card);
+  card.appendChild(done);
+  done.appendChild(symbolDone);
+  card.appendChild(details);
+  card.appendChild(actions);
+  details.appendChild(detailTitle);
+  details.appendChild(detailText);
+  details.appendChild(priority);
+  actions.appendChild(exit);
+  actions.appendChild(edit);
+
+  detailTitle.innerText = `${titleInput.value}`;
+  detailText.innerText = `${descInput.value}`;
+  priority.innerText = `${priorityInput.value}`;
+
+  let todoList = document.querySelector(`#To-do`);
+  let inprogressList = document.querySelector("#In progress");
+  let stuckList = document.querySelector("#Stuck");
+  let doneList = document.querySelector("#Done");
+
+  if (statusInput.value == "To do") {
+    todoList.appendChild(card);
+  } else if (statusInput.value == "In progress") {
+    inprogressList.appendChild(card);
+  } else if (statusInput.value == "Stuck") {
+    stuckList.appendChild(card);
+  } else if (statusInput.value == "Done") {
+    doneList.appendChild(card);
+  }
+
+  invisAdd();
 }
 
-addCard();
+let addCards = document.querySelector(".submitBtn");
+addCards.addEventListener("click", addCard);
 
-let addCards = document.querySelector("submitBtn");
-addBoard.addEventListener("click", alert);
+titleInput.addEventListener("input", () => {
+  helperText.style.display = "none";
+});
 
 // /* <div class="container">
 //       <div class="card">
