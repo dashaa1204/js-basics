@@ -3,6 +3,23 @@ function createTag(tagName, tagClass) {
   tag.setAttribute("class", `${tagClass}`);
   return tag;
 }
+
+function dragstartHandler(ev) {
+  ev.dataTransfer.setData("application/my-app", ev.target.id);
+  ev.dataTransfer.effectAllowed = "move";
+}
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+  ev.dataTransfer.dropEffect = "move";
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  // Get the id of the target and add the moved element to the target's DOM
+  const data = ev.dataTransfer.getData("application/my-app");
+  ev.target.appendChild(document.getElementById(data));
+}
 const root = document.getElementById("root");
 const container = createTag("div", "container");
 let cards;
@@ -17,13 +34,15 @@ let over;
 let titleCount;
 let addBtnPls;
 
-const listTitles = ["To-do", "In progress", "Stuck", "Done"];
+const listTitles = ["To-do", "In-progress", "Stuck", "Done"];
 
 for (let i = 0; i < 4; i++) {
   card = createTag("div", "allcard");
   header = createTag("div", "boardHeader");
   list = createTag("div", "list");
   list.setAttribute("id", `${listTitles[i]}`);
+  list.setAttribute("ondragover", "dragstartHandler(event)");
+  list.setAttribute("ondrop", `dropHandler(event)`);
   addBtn = createTag("div", "addBtn");
   over = createTag("div", "over");
   titleCount = createTag("span", "count");
@@ -72,9 +91,15 @@ let statusOption1 = document.createElement("option");
 let statusOption2 = document.createElement("option");
 let statusOption3 = document.createElement("option");
 let statusOption4 = document.createElement("option");
+let statusOption5 = document.createElement("option");
+statusOption5.setAttribute("selected", "true");
+statusOption5.setAttribute("disabled", "disabled");
 let priorityOption1 = document.createElement("option");
 let priorityOption2 = document.createElement("option");
 let priorityOption3 = document.createElement("option");
+let priorityOption4 = document.createElement("option");
+priorityOption4.setAttribute("selected", "true");
+priorityOption4.setAttribute("disabled", "disabled");
 
 container.appendChild(addBoard);
 addBoard.appendChild(away);
@@ -96,10 +121,12 @@ status.appendChild(statusInput);
 priority.appendChild(priorityLabel);
 priority.appendChild(priorityInput);
 form.appendChild(submitBtn);
+statusInput.appendChild(statusOption5);
 statusInput.appendChild(statusOption1);
 statusInput.appendChild(statusOption2);
 statusInput.appendChild(statusOption3);
 statusInput.appendChild(statusOption4);
+priorityInput.appendChild(priorityOption4);
 priorityInput.appendChild(priorityOption1);
 priorityInput.appendChild(priorityOption2);
 priorityInput.appendChild(priorityOption3);
@@ -124,7 +151,13 @@ function visAdd() {
 }
 
 function invisAdd() {
+  statusInput.value = statusOption5;
+  priorityInput.value = priorityOption4;
   addBoard.style.visibility = "hidden";
+  titleInput.value = "";
+  descInput.value = "";
+  statusInput.style.border = "solid 1px grey";
+  priorityInput.style.border = "solid 1px grey";
 }
 
 let getform = document.querySelectorAll(".addBtn");
@@ -134,69 +167,82 @@ getform.forEach((a) => {
 
 let awayForm = document.getElementById("away");
 awayForm.addEventListener("click", invisAdd);
+const select = document.getElementById("#select");
 
-function alert() {
+function addCard() {
   if (titleInput.value === "") {
     helperText.style.display = "block";
     titleInput.style.border = "solid 1px red";
-  } else {
-    helperText.style.display = "none";
-    titleInput.style.border = "solid 1px grey";
-    console.log("none");
-  }
-  if (descInput.value === "") {
+  } else if (descInput.value === "") {
     descHelpText.style.display = "block";
     descInput.style.border = "solid 1px red";
+  } else if (statusInput.value === "") {
+    statusInput.style.border = "solid 1px red";
+  } else if (priorityInput.value === "") {
+    priorityInput.style.border = "solid 1px red";
   } else {
+    titleInput.style.border = "solid 1px grey";
     descHelpText.style.display = "none";
     descInput.style.border = "solid 1px grey";
+    const card = createTag("div", "card");
+    card.setAttribute("dragable", "true");
+    card.setAttribute("ondragstart", "dragstartHandler(event)");
+    const done = createTag("div", "done");
+    done.setAttribute("id", "done");
+    const symbolDone = createTag("i");
+    symbolDone.setAttribute("class", "fa-solid fa-check");
+    const details = createTag("div", "details");
+    const actions = createTag("div", "actions");
+    const detailTitle = createTag("h4", "detailTitle");
+    const detailText = createTag("p", "detailText");
+    const priority = createTag("div", "addedPriority");
+    const exit = createTag("div", "done");
+    const symbolExit = createTag("i");
+    symbolExit.setAttribute("class", "fa-solid fa-x");
+    const edit = createTag("div", "done");
+    const symbolEdit = createTag("i");
+    symbolEdit.setAttribute("class", "fa-regular fa-pen-to-square");
+
+    list.appendChild(card);
+    card.appendChild(done);
+    done.appendChild(symbolDone);
+    card.appendChild(details);
+    card.appendChild(actions);
+    details.appendChild(detailTitle);
+    details.appendChild(detailText);
+    details.appendChild(priority);
+    actions.appendChild(exit);
+    exit.appendChild(symbolExit);
+    actions.appendChild(edit);
+    edit.appendChild(symbolEdit);
+
+    detailTitle.innerText = `${titleInput.value}`;
+    detailText.innerText = `${descInput.value}`;
+    priority.innerText = `${priorityInput.value}`;
+
+    let todoList = document.querySelector(`#To-do`);
+    let inprogressList = document.querySelector(`#In-progress`);
+    let stuckList = document.querySelector("#Stuck");
+    let doneList = document.querySelector("#Done");
+
+    if (statusInput.value == "To do") {
+      todoList.appendChild(card);
+    } else if (statusInput.value == "In progress") {
+      inprogressList.appendChild(card);
+    } else if (statusInput.value == "Stuck") {
+      stuckList.appendChild(card);
+    } else if (statusInput.value == "Done") {
+      doneList.appendChild(card);
+    }
+
+    invisAdd();
+    done.addEventListener("click", () => {
+      doneList.appendChild(card);
+    });
+    exit.addEventListener("click", () => {
+      card.remove();
+    });
   }
-}
-
-function addCard() {
-  const card = createTag("div", "card");
-  const done = createTag("div", "done");
-  const symbolDone = createTag("i");
-  symbolDone.setAttribute("class", "fa-solid fa-check");
-  const details = createTag("div", "details");
-  const actions = createTag("div", "actions");
-  const detailTitle = createTag("h4", "detailTitle");
-  const detailText = createTag("p", "detailText");
-  const priority = createTag("div", "addedPriority");
-  const exit = createTag("div", "done");
-  const edit = createTag("div", "done");
-
-  list.appendChild(card);
-  card.appendChild(done);
-  done.appendChild(symbolDone);
-  card.appendChild(details);
-  card.appendChild(actions);
-  details.appendChild(detailTitle);
-  details.appendChild(detailText);
-  details.appendChild(priority);
-  actions.appendChild(exit);
-  actions.appendChild(edit);
-
-  detailTitle.innerText = `${titleInput.value}`;
-  detailText.innerText = `${descInput.value}`;
-  priority.innerText = `${priorityInput.value}`;
-
-  let todoList = document.querySelector(`#To-do`);
-  let inprogressList = document.querySelector("#In progress");
-  let stuckList = document.querySelector("#Stuck");
-  let doneList = document.querySelector("#Done");
-
-  if (statusInput.value == "To do") {
-    todoList.appendChild(card);
-  } else if (statusInput.value == "In progress") {
-    inprogressList.appendChild(card);
-  } else if (statusInput.value == "Stuck") {
-    stuckList.appendChild(card);
-  } else if (statusInput.value == "Done") {
-    doneList.appendChild(card);
-  }
-
-  invisAdd();
 }
 
 let addCards = document.querySelector(".submitBtn");
