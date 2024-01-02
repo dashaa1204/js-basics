@@ -278,7 +278,7 @@ function addCard() {
   document.getElementById("2").innerText = inprogCards.length;
   document.getElementById("3").innerText = stuckCards.length;
   document.getElementById("4").innerText = doneCards.length;
-  // list.sort(a,b){()}
+  // list.sort(a,b){()=>}
 }
 
 let addCards = document.querySelector(".submitBtn");
