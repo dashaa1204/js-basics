@@ -187,7 +187,7 @@ function addCard() {
   if (titleInput.value > "" && descInput.value > "") {
     const card = createTag("div", "card");
     card.setAttribute("draggable", "true");
-    card.setAttribute("ondragstart", "dragstartHandler(event)");
+    card.setAttribute("ondraggstart", "dragstartHandler(event)");
     const done = createTag("div", "done");
     done.setAttribute("id", "done");
     const symbolDone = createTag("i");
@@ -220,12 +220,28 @@ function addCard() {
     detailTitle.innerText = `${titleInput.value}`;
     detailText.innerText = `${descInput.value}`;
     priority.innerText = `${priorityInput.value}`;
+    // var mylist = document.getElementById("To-do");
+    // var divs = document.getElementsByClassName("To-do");
+    // var listitems = [];
+    // for (let i = 0; i < divs.length; i++) {
+    //   listitems.push(divs(i));
+    // }
+    // console.log(listitems);
 
     let todoList = document.querySelector(`#To-do`);
     let inprogressList = document.querySelector(`#In-progress`);
     let stuckList = document.querySelector("#Stuck");
     let doneList = document.querySelector("#Done");
-    let countodo = 0;
+    // var listitems = [];
+    // for (let i = 0; i < todoCards.length; i++) {
+    //   listitems.push(todoCards.innerHtml[i]);
+    // }
+    // console.log(todoCards);
+    // console.log(listitems);
+    // var sortedToDo = todoCards.sort((a, b) => a - b);
+    let sortedTodo = Array.from(todoCards).sort((a, b) => b.id - a.id);
+    console.log("sorted", sortedTodo);
+    console.log(todoCards);
     if (statusInput.value == "To do") {
       todoList.appendChild(card);
       card.setAttribute("class", "todoClass");
@@ -241,7 +257,13 @@ function addCard() {
       doneList.appendChild(card);
       card.setAttribute("class", "doneClass");
     }
-    console.log(todoCards);
+    if (priority.innerText === "High") {
+      card.setAttribute("id", "300");
+    } else if (priority.innerText === "Medium") {
+      card.setAttribute("id", "200");
+    } else if (priority.innerText === "Low") {
+      card.setAttribute("id", "100");
+    }
 
     invisAdd();
     done.addEventListener("click", () => {
@@ -278,7 +300,6 @@ function addCard() {
   document.getElementById("2").innerText = inprogCards.length;
   document.getElementById("3").innerText = stuckCards.length;
   document.getElementById("4").innerText = doneCards.length;
-  // list.sort(a,b){()=>}
 }
 
 let addCards = document.querySelector(".submitBtn");
