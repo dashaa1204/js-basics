@@ -1,15 +1,20 @@
-function createTag(tagName, tagClass) {
+function createTag(tagName, tagClass, tagId) {
   const tag = document.createElement(`${tagName}`);
-  tag.setAttribute("class", `${tagClass}`);
+  if (tagClass != "" && tagClass != undefined) {
+    tag.setAttribute("class", `${tagClass}`);
+  }
+  if (tagId != "" && tagId != undefined) {
+    tag.setAttribute("id", `${tagId}`);
+  }
   return tag;
 }
 
-function dragstartHandler(ev) {
+function draggstartHandler(ev) {
   ev.dataTransfer.setData("application/my-app", ev.target.id);
   ev.dataTransfer.effectAllowed = "move";
 }
 
-function dragoverHandler(ev) {
+function draggoverHandler(ev) {
   ev.preventDefault();
   ev.dataTransfer.dropEffect = "move";
 }
@@ -33,6 +38,10 @@ let addBtn;
 let over;
 let titleCount;
 let addBtnPls;
+let todoCards = document.getElementsByClassName("todoClass");
+let inprogCards = document.getElementsByClassName("inProgClass");
+let stuckCards = document.getElementsByClassName("stuckClass");
+let doneCards = document.getElementsByClassName("doneClass");
 
 const listTitles = ["To-do", "In-progress", "Stuck", "Done"];
 
@@ -41,11 +50,11 @@ for (let i = 0; i < 4; i++) {
   header = createTag("div", "boardHeader");
   list = createTag("div", "list");
   list.setAttribute("id", `${listTitles[i]}`);
-  list.setAttribute("ondragover", "dragstartHandler(event)");
+  list.setAttribute("ondraggover", "draggstartHandler(event)");
   list.setAttribute("ondrop", `dropHandler(event)`);
   addBtn = createTag("div", "addBtn");
   over = createTag("div", "over");
-  titleCount = createTag("span", "count");
+  titleCount = createTag("span", "count", i + 1);
   addBtnPls = createTag("span", "fa-regular fa-plus");
   cards.appendChild(card);
   card.appendChild(header);
@@ -54,7 +63,8 @@ for (let i = 0; i < 4; i++) {
   card.appendChild(over);
   header.innerText = listTitles[i];
   header.appendChild(titleCount);
-  titleCount.innerText = "0";
+  titleCount.value = 0;
+  titleCount.innerText = `${titleCount.value}`;
   addBtn.innerText = "Add card";
   addBtn.appendChild(addBtnPls);
 }
@@ -158,6 +168,10 @@ function invisAdd() {
   descInput.value = "";
   statusInput.style.border = "solid 1px grey";
   priorityInput.style.border = "solid 1px grey";
+  helperText.style.display = "none";
+  titleInput.style.border = "1px solid rgb(165, 165, 165)";
+  descHelpText.style.display = "none";
+  descInput.style.border = "1px solid rgb(165, 165, 165)";
 }
 
 let getform = document.querySelectorAll(".addBtn");
@@ -170,22 +184,9 @@ awayForm.addEventListener("click", invisAdd);
 const select = document.getElementById("#select");
 
 function addCard() {
-  if (titleInput.value === "") {
-    helperText.style.display = "block";
-    titleInput.style.border = "solid 1px red";
-  } else if (descInput.value === "") {
-    descHelpText.style.display = "block";
-    descInput.style.border = "solid 1px red";
-  } else if (statusInput.value === "") {
-    statusInput.style.border = "solid 1px red";
-  } else if (priorityInput.value === "") {
-    priorityInput.style.border = "solid 1px red";
-  } else {
-    titleInput.style.border = "solid 1px grey";
-    descHelpText.style.display = "none";
-    descInput.style.border = "solid 1px grey";
+  if (titleInput.value > "" && descInput.value > "") {
     const card = createTag("div", "card");
-    card.setAttribute("dragable", "true");
+    card.setAttribute("draggable", "true");
     card.setAttribute("ondragstart", "dragstartHandler(event)");
     const done = createTag("div", "done");
     done.setAttribute("id", "done");
@@ -224,25 +225,60 @@ function addCard() {
     let inprogressList = document.querySelector(`#In-progress`);
     let stuckList = document.querySelector("#Stuck");
     let doneList = document.querySelector("#Done");
-
+    let countodo = 0;
     if (statusInput.value == "To do") {
       todoList.appendChild(card);
+      card.setAttribute("class", "todoClass");
+      titleCount.innerText = todoCards.length;
     } else if (statusInput.value == "In progress") {
       inprogressList.appendChild(card);
+      card.setAttribute("class", "inProgClass");
+      titleCount.innerText = inprogCards.length;
     } else if (statusInput.value == "Stuck") {
       stuckList.appendChild(card);
+      card.setAttribute("class", "stuckClass");
     } else if (statusInput.value == "Done") {
       doneList.appendChild(card);
+      card.setAttribute("class", "doneClass");
     }
+    console.log(todoCards);
 
     invisAdd();
     done.addEventListener("click", () => {
       doneList.appendChild(card);
+      card.setAttribute("class", "doneClass");
+      document.getElementById("1").innerText = todoCards.length;
+      document.getElementById("2").innerText = inprogCards.length;
+      document.getElementById("3").innerText = stuckCards.length;
+      document.getElementById("4").innerText = doneCards.length;
+      console.log(doneCards);
     });
+
     exit.addEventListener("click", () => {
       card.remove();
+      document.getElementById("1").innerText = todoCards.length;
+      document.getElementById("2").innerText = inprogCards.length;
+      document.getElementById("3").innerText = stuckCards.length;
+      document.getElementById("4").innerText = doneCards.length;
     });
   }
+  if (titleInput.value === "") {
+    helperText.style.display = "block";
+    titleInput.style.border = "1px solid red";
+  } else {
+    helperText.style.display = "none";
+  }
+  if (descInput.value === "") {
+    descHelpText.style.display = "block";
+    descInput.style.border = "1px solid red";
+  } else {
+    descHelpText.style.display = "none";
+  }
+  document.getElementById("1").innerText = todoCards.length;
+  document.getElementById("2").innerText = inprogCards.length;
+  document.getElementById("3").innerText = stuckCards.length;
+  document.getElementById("4").innerText = doneCards.length;
+  // list.sort(a,b){()}
 }
 
 let addCards = document.querySelector(".submitBtn");
@@ -250,6 +286,12 @@ addCards.addEventListener("click", addCard);
 
 titleInput.addEventListener("input", () => {
   helperText.style.display = "none";
+  titleInput.style.border = "1px solid rgb(165, 165, 165)";
+});
+
+descInput.addEventListener("input", () => {
+  descHelpText.style.display = "none";
+  descInput.style.border = "1px solid rgb(165, 165, 165)";
 });
 
 // /* <div class="container">

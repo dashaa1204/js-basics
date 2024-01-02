@@ -33,6 +33,42 @@ body {
   gap: 12px;
 }
 
+.todoClass {
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  gap: 12px;
+}
+
+.inProgClass {
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  gap: 12px;
+}
+
+.stuckClass {
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  gap: 12px;
+}
+
+.doneClass {
+  display: flex;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  gap: 12px;
+}
+
 .allcard {
   background-color: #ebecf0;
   border-radius: 8px;
@@ -188,4 +224,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.count {
+  color: rgba(0, 0, 0, 0.5);
 }
