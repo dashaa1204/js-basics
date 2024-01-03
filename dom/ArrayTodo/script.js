@@ -37,9 +37,6 @@ for (let i = 0; i < 4; i++) {
   addBtn.innerText = "Add card";
   addBtn.appendChild(addBtnPls);
 }
-
-function addList() {}
-
 let addBoard = createTag("div", "addBoard");
 let away = createTag("div", "away");
 away.setAttribute("id", "away");
@@ -153,42 +150,27 @@ awayForm.addEventListener("click", invisAdd);
 const select = document.getElementById("#select");
 
 function render() {
-  const card = createTag("div", "card", "card");
-  const done = createTag("div", "done", "done");
-  const symbolDone = createTag("i", "fa-solid fa-check");
-  const details = createTag("div", "details", "details");
-  const actions = createTag("div", "actions", "actions");
-  let detailTitle = createTag("div", "detailTitle", "detailTitle");
-  let detailText = createTag("p", "detailText", "detailText");
-  let priority = createTag("div", "addedPriority");
-  const exit = createTag("div", "done");
-  const symbolExit = createTag("i", "fa-solid fa-x");
-  const edit = createTag("div", "done");
-  const symbolEdit = createTag("i", "fa-regular fa-pen-to-square");
-  list.appendChild(card);
-  card.appendChild(done);
-  done.appendChild(symbolDone);
-  card.appendChild(details);
-  card.appendChild(actions);
-  details.appendChild(detailTitle);
-  details.appendChild(detailText);
-  details.appendChild(priority);
-  actions.appendChild(exit);
-  exit.appendChild(symbolExit);
-  actions.appendChild(edit);
-  edit.appendChild(symbolEdit);
+  const todoOut = document.querySelector(`#To-do`);
+  const inprogOut = document.querySelector(`#In-progress`);
+  const stuckOut = document.querySelector("#Stuck");
+  const doneOut = document.querySelector("#Done");
+  todoOut.innerHTML = "";
+  inprogOut.innerHTML = "";
+  stuckOut.innerHTML = "";
+  doneOut.innerHTML = "";
+  // const randId =
   let myobject = {
     title: `${titleInput.value}`,
     description: `${descInput.value}`,
     status: `${statusInput.value}`,
     priority: `${priorityInput.value}`,
+    // id: `${mathrandom}`
   };
-  todos.push(myobject);
 
-  todos.map((element) => {
-    const detailTitle = document.getElementById("detailTitle");
-    detailTitle.innerText = todos.title;
-  });
+  if (titleInput.value > "" && descInput.value > "") {
+    todos.push(myobject);
+  }
+
   console.log(todos);
 
   let todoList = todos.filter((todos) => {
@@ -203,8 +185,62 @@ function render() {
   let doneList = todos.filter((todos) => {
     return todos.status == "Done";
   });
-}
 
-render();
+  let myfilteredCards = [todoList, inprogList, stuckList, doneList];
+
+  myfilteredCards.map((cards) => {
+    cards.map((element, index) => {
+      const card = createTag("div", "card", "card");
+      const done = createTag("div", "done", "done");
+      const symbolDone = createTag("i", "fa-solid fa-check");
+      const details = createTag("div", "details", "details");
+      const actions = createTag("div", "actions", "actions");
+      let detailTitle = createTag("div", "detailTitle", "detailTitle");
+      let detailText = createTag("p", "detailText", "detailText");
+      let priority = createTag("div", "addedPriority");
+      const exit = createTag("div", "done");
+      const symbolExit = createTag("i", "fa-solid fa-x");
+      const edit = createTag("div", "done");
+      const symbolEdit = createTag("i", "fa-regular fa-pen-to-square");
+      card.appendChild(done);
+      done.appendChild(symbolDone);
+      card.appendChild(details);
+      card.appendChild(actions);
+      details.appendChild(detailTitle);
+      details.appendChild(detailText);
+      details.appendChild(priority);
+      actions.appendChild(exit);
+      exit.appendChild(symbolExit);
+      actions.appendChild(edit);
+      edit.appendChild(symbolEdit);
+
+      detailTitle.innerText = `${element.title}`;
+      detailText.innerText = `${element.description}`;
+      priority.innerText = `${element.priority}`;
+      done.addEventListener("click", () => {
+        element.status = "Done";
+        render();
+      });
+
+      exit.addEventListener("click", () => {
+        cards.splice(index, 1);
+        console.log(todos);
+        render();
+      });
+
+      if (cards == todoList) {
+        todoOut.appendChild(card);
+      } else if (cards == inprogList) {
+        inprogOut.appendChild(card);
+      } else if (cards == stuckList) {
+        stuckOut.appendChild(card);
+      } else if (cards == doneList) {
+        doneOut.appendChild(card);
+      }
+
+      invisAdd();
+    });
+  });
+}
 
 submitBtn.addEventListener("click", render);

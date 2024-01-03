@@ -267,6 +267,7 @@ function addCard() {
     }
 
     invisAdd();
+
     done.addEventListener("click", () => {
       doneList.appendChild(card);
       card.setAttribute("class", "doneClass");
