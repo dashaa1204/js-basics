@@ -187,7 +187,7 @@ function addCard() {
   if (titleInput.value > "" && descInput.value > "") {
     const card = createTag("div", "card");
     card.setAttribute("draggable", "true");
-    card.setAttribute("ondraggstart", "dragstartHandler(event)");
+    // card.setAttribute("ondraggstart", "dragstartHandler(event)");
     const done = createTag("div", "done");
     done.setAttribute("id", "done");
     const symbolDone = createTag("i");
@@ -239,9 +239,10 @@ function addCard() {
     // console.log(todoCards);
     // console.log(listitems);
     // var sortedToDo = todoCards.sort((a, b) => a - b);
+    let todoCards = document.getElementsByClassName("todoClass");
+    console.log(todoCards);
     let sortedTodo = Array.from(todoCards).sort((a, b) => b.id - a.id);
     console.log("sorted", sortedTodo);
-    console.log(todoCards);
     if (statusInput.value == "To do") {
       todoList.appendChild(card);
       card.setAttribute("class", "todoClass");
