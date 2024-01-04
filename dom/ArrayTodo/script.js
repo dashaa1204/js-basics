@@ -11,6 +11,33 @@ function createTag(tagName, tagClass, tagId) {
 }
 let todos = [];
 
+const setData = (todos) => {
+  data = todos;
+  render();
+};
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var id = ev.dataTransfer.getData("text");
+
+  setData(
+    todos.map((item) => {
+      if (item.id === id) {
+        item.status = status;
+      }
+      return item;
+    })
+  );
+}
+
 const listTitles = ["To-do", "In-progress", "Stuck", "Done"];
 const container = createTag("div", "container");
 const cards = createTag("div", "cards");
@@ -22,6 +49,8 @@ for (let i = 0; i < 4; i++) {
   cards.appendChild(cardBoard);
   const boardHeader = createTag("div", "boardHeader", "boardHeader");
   list = createTag("div", "list", `${listTitles[i]}`);
+  list.setAttribute("ondrop", "drop(event)");
+  list.setAttribute("ondragover", "allowDrop(event)");
   cardBoard.appendChild(boardHeader);
   cardBoard.appendChild(list);
   const addBtn = createTag("div", "addBtn", "addBtn");
@@ -169,9 +198,42 @@ function render() {
 
   if (titleInput.value > "" && descInput.value > "") {
     todos.push(myobject);
+    console.log(todos);
+  }
+  if (titleInput.value == "") {
+    helperText.style.display = "block";
+    titleInput.style.border = "1px solid red";
+  }
+  if (descInput.value == "") {
+    descHelpText.style.display = "block";
+    descInput.style.border = "1px solid red";
+  } else {
+    descHelpText.style.display = "none";
+  }
+  if (statusInput.value == "") {
+    statusInput.style.border = "1px solid red";
+  }
+  if (priorityInput.value == "") {
+    priorityInput.style.border = "1px solid red";
   }
 
-  console.log(todos);
+  titleInput.addEventListener("input", () => {
+    titleInput.style.border = "1px solid rgb(165, 165, 165)";
+    helperText.style.display = "none";
+  });
+  descInput.addEventListener("input", () => {
+    descInput.style.border = "1px solid rgb(165, 165, 165)";
+    descHelpText.style.display = "none";
+  });
+  statusInput.addEventListener("input", () => {
+    statusInput.style.border = "1px solid rgb(165, 165, 165)";
+  });
+  priorityInput.addEventListener("input", () => {
+    priorityInput.style.border = "1px solid rgb(165, 165, 165)";
+  });
+  todos = todos.filter((todos) => {
+    return todos.title != "Deleted";
+  });
 
   let todoList = todos.filter((todos) => {
     return todos.status == "To do";
@@ -186,11 +248,18 @@ function render() {
     return todos.status == "Done";
   });
 
+  document.getElementById("1").innerText = todoList.length;
+  document.getElementById("2").innerText = inprogList.length;
+  document.getElementById("3").innerText = stuckList.length;
+  document.getElementById("4").innerText = doneList.length;
+
   let myfilteredCards = [todoList, inprogList, stuckList, doneList];
 
   myfilteredCards.map((cards) => {
-    cards.map((element, index) => {
+    cards.map((element) => {
       const card = createTag("div", "card", "card");
+      card.setAttribute("draggable", "true");
+      card.setAttribute("ondragstart", "drag(event)");
       const done = createTag("div", "done", "done");
       const symbolDone = createTag("i", "fa-solid fa-check");
       const details = createTag("div", "details", "details");
@@ -217,15 +286,19 @@ function render() {
       detailTitle.innerText = `${element.title}`;
       detailText.innerText = `${element.description}`;
       priority.innerText = `${element.priority}`;
+      card.addEventListener("drop", () => {
+        console.log(drop);
+      });
       done.addEventListener("click", () => {
         element.status = "Done";
         render();
       });
 
       exit.addEventListener("click", () => {
-        cards.splice(index, 1);
-        console.log(todos);
+        console.log(element);
+        element.title = "Deleted";
         render();
+        console.log(todos);
       });
 
       if (cards == todoList) {
