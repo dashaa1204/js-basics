@@ -11,33 +11,6 @@ function createTag(tagName, tagClass, tagId) {
 }
 let todos = [];
 
-const setData = (todos) => {
-  data = todos;
-  render();
-};
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var id = ev.dataTransfer.getData("text");
-
-  setData(
-    todos.map((item) => {
-      if (item.id === id) {
-        item.status = status;
-      }
-      return item;
-    })
-  );
-}
-
 const listTitles = ["To-do", "In-progress", "Stuck", "Done"];
 const container = createTag("div", "container");
 const cards = createTag("div", "cards");
@@ -187,14 +160,25 @@ function render() {
   inprogOut.innerHTML = "";
   stuckOut.innerHTML = "";
   doneOut.innerHTML = "";
-  // const randId =
   let myobject = {
     title: `${titleInput.value}`,
     description: `${descInput.value}`,
     status: `${statusInput.value}`,
     priority: `${priorityInput.value}`,
-    // id: `${mathrandom}`
+    priorityIndex: ``,
   };
+
+  function createProirIndex() {
+    if (myobject.priority == `High`) {
+      myobject.priorityIndex = `30`;
+    } else if (myobject.priority == `Medium`) {
+      myobject.priorityIndex = `20`;
+    } else if (myobject.priority == `Low`) {
+      myobject.priorityIndex = `10`;
+    }
+  }
+
+  createProirIndex();
 
   if (titleInput.value > "" && descInput.value > "") {
     todos.push(myobject);
@@ -256,6 +240,9 @@ function render() {
   let myfilteredCards = [todoList, inprogList, stuckList, doneList];
 
   myfilteredCards.map((cards) => {
+    cards = cards.sort((a, b) => {
+      return b.priorityIndex - a.priorityIndex;
+    });
     cards.map((element) => {
       const card = createTag("div", "card", "card");
       card.setAttribute("draggable", "true");
@@ -286,9 +273,13 @@ function render() {
       detailTitle.innerText = `${element.title}`;
       detailText.innerText = `${element.description}`;
       priority.innerText = `${element.priority}`;
-      card.addEventListener("drop", () => {
-        console.log(drop);
-      });
+      // card.addEventListener("drop", () => {
+      //   console.log(drop);
+      // });
+      // edit.addEventListener("click", (()=>{
+      //   titleInput.style.
+      // }))
+
       done.addEventListener("click", () => {
         element.status = "Done";
         render();
