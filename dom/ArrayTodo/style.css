@@ -229,3 +229,9 @@ button {
 .count {
   color: rgba(0, 0, 0, 0.5);
 }
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

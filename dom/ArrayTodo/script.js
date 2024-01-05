@@ -17,6 +17,7 @@ const cards = createTag("div", "cards");
 root.appendChild(container);
 container.appendChild(cards);
 let list;
+
 for (let i = 0; i < 4; i++) {
   const cardBoard = createTag("div", "cardBoard", "cardBoard");
   cards.appendChild(cardBoard);
@@ -39,6 +40,7 @@ for (let i = 0; i < 4; i++) {
   addBtn.innerText = "Add card";
   addBtn.appendChild(addBtnPls);
 }
+
 let addBoard = createTag("div", "addBoard");
 let away = createTag("div", "away");
 away.setAttribute("id", "away");
@@ -63,21 +65,18 @@ statusInput.setAttribute("id", "status");
 let priorityLabel = createTag("label", "priorityLabel");
 let priorityInput = createTag("select");
 priorityInput.setAttribute("id", "priority");
-let submitBtn = createTag("button", "submitBtn");
+let submitBtn = createTag("button", "submitBtn", "submitBtn");
 submitBtn.setAttribute("type", "submit");
 let statusOption1 = document.createElement("option");
 let statusOption2 = document.createElement("option");
 let statusOption3 = document.createElement("option");
 let statusOption4 = document.createElement("option");
-let statusOption5 = document.createElement("option");
-statusOption5.setAttribute("selected", "true");
-statusOption5.setAttribute("disabled", "disabled");
+statusOption1.setAttribute("selected", "true");
 let priorityOption1 = document.createElement("option");
 let priorityOption2 = document.createElement("option");
 let priorityOption3 = document.createElement("option");
 let priorityOption4 = document.createElement("option");
-priorityOption4.setAttribute("selected", "true");
-priorityOption4.setAttribute("disabled", "disabled");
+priorityOption1.setAttribute("selected", "true");
 
 container.appendChild(addBoard);
 addBoard.appendChild(away);
@@ -99,12 +98,10 @@ status.appendChild(statusInput);
 priority.appendChild(priorityLabel);
 priority.appendChild(priorityInput);
 form.appendChild(submitBtn);
-statusInput.appendChild(statusOption5);
 statusInput.appendChild(statusOption1);
 statusInput.appendChild(statusOption2);
 statusInput.appendChild(statusOption3);
 statusInput.appendChild(statusOption4);
-priorityInput.appendChild(priorityOption4);
 priorityInput.appendChild(priorityOption1);
 priorityInput.appendChild(priorityOption2);
 priorityInput.appendChild(priorityOption3);
@@ -124,13 +121,24 @@ priorityOption1.innerText = "Low";
 priorityOption2.innerText = "Medium";
 priorityOption3.innerText = "High";
 
+function editTask(a) {
+  headerForm.innerText = "Edit task";
+  submitBtn.innerText = "Save";
+  submitBtn.setAttribute("id", "editBtn");
+  let editBtn = document.querySelector("#editBtn");
+
+  visAdd();
+}
+
+function deleted(a) {
+  a.title = "Deleted";
+}
+
 function visAdd() {
   addBoard.style.visibility = "visible";
 }
 
 function invisAdd() {
-  statusInput.value = statusOption5;
-  priorityInput.value = priorityOption4;
   addBoard.style.visibility = "hidden";
   titleInput.value = "";
   descInput.value = "";
@@ -183,22 +191,17 @@ function render() {
   if (titleInput.value > "" && descInput.value > "") {
     todos.push(myobject);
     console.log(todos);
-  }
-  if (titleInput.value == "") {
-    helperText.style.display = "block";
-    titleInput.style.border = "1px solid red";
-  }
-  if (descInput.value == "") {
-    descHelpText.style.display = "block";
-    descInput.style.border = "1px solid red";
   } else {
-    descHelpText.style.display = "none";
-  }
-  if (statusInput.value == "") {
-    statusInput.style.border = "1px solid red";
-  }
-  if (priorityInput.value == "") {
-    priorityInput.style.border = "1px solid red";
+    if (titleInput.value == "") {
+      helperText.style.display = "block";
+      titleInput.style.border = "1px solid red";
+    }
+    if (descInput.value == "") {
+      descHelpText.style.display = "block";
+      descInput.style.border = "1px solid red";
+    } else {
+      descHelpText.style.display = "none";
+    }
   }
 
   titleInput.addEventListener("input", () => {
@@ -209,12 +212,7 @@ function render() {
     descInput.style.border = "1px solid rgb(165, 165, 165)";
     descHelpText.style.display = "none";
   });
-  statusInput.addEventListener("input", () => {
-    statusInput.style.border = "1px solid rgb(165, 165, 165)";
-  });
-  priorityInput.addEventListener("input", () => {
-    priorityInput.style.border = "1px solid rgb(165, 165, 165)";
-  });
+
   todos = todos.filter((todos) => {
     return todos.title != "Deleted";
   });
@@ -280,16 +278,16 @@ function render() {
       //   titleInput.style.
       // }))
 
+      edit.addEventListener("click", editTask);
+
       done.addEventListener("click", () => {
         element.status = "Done";
         render();
       });
 
       exit.addEventListener("click", () => {
-        console.log(element);
-        element.title = "Deleted";
+        deleted(element);
         render();
-        console.log(todos);
       });
 
       if (cards == todoList) {
@@ -307,4 +305,5 @@ function render() {
   });
 }
 
-submitBtn.addEventListener("click", render);
+let addbtn = document.querySelector("#submitBtn");
+addbtn.addEventListener("click", render);
