@@ -121,15 +121,6 @@ priorityOption1.innerText = "Low";
 priorityOption2.innerText = "Medium";
 priorityOption3.innerText = "High";
 
-function editTask(a) {
-  headerForm.innerText = "Edit task";
-  submitBtn.innerText = "Save";
-  submitBtn.setAttribute("id", "editBtn");
-  let editBtn = document.querySelector("#editBtn");
-
-  visAdd();
-}
-
 function deleted(a) {
   a.title = "Deleted";
 }
@@ -152,7 +143,12 @@ function invisAdd() {
 
 let getform = document.querySelectorAll(".addBtn");
 getform.forEach((a) => {
-  a.addEventListener("click", visAdd);
+  a.addEventListener("click", () => {
+    headerForm.innerText = "Add task";
+    submitBtn.innerText = "Add task";
+    submitBtn.setAttribute("id", "submitBtn");
+    visAdd();
+  });
 });
 
 let awayForm = document.getElementById("away");
@@ -277,6 +273,22 @@ function render() {
       // edit.addEventListener("click", (()=>{
       //   titleInput.style.
       // }))
+
+      function editTask(a) {
+        headerForm.innerText = "Edit task";
+        submitBtn.innerText = "Save";
+        submitBtn.setAttribute("id", "editBtn");
+        let editBtn = document.querySelector("#editBtn");
+        titleInput.value = `${element.title}`;
+        descInput.value = `${element.description}`;
+        statusInput.value = `${element.status}`;
+        priority.value = `${element.priority}`;
+        editBtn.addEventListener(`click`, () => {
+          deleted(element);
+          render();
+        });
+        visAdd();
+      }
 
       edit.addEventListener("click", editTask);
 
